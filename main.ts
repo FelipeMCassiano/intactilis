@@ -11,12 +11,10 @@ const client = new Pool({
     port: 5432,
 });
 
-await client.connect();
-
 const main = async () => {
-    moment;
     const q = composeQuery(select(["saldo", "nome", "limite"]), from("clientes"), limit(10));
-    const res = await executeQuery(client, q); // Execute the query
+
+    const res = await executeQuery(client, q);
 
     if (!res.ok) {
         console.log(res);
@@ -24,7 +22,7 @@ const main = async () => {
     }
 
     const { data } = res;
-    console.log(data.rows); // Log the data
+    console.log(data.rows);
 };
 
-main(); // Just call main
+main();

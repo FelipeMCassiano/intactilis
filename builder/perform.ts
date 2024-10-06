@@ -2,12 +2,12 @@ import { Client, Pool, type QueryResult } from "pg";
 import type { Query } from "./query";
 import { err, ok, type Result } from "../utils/result";
 
-export const composeQuery = <Query>(...fns: Array<(val: Query) => Query>): Query => {
+export const composeQuery = (...fns: Array<(val: Query) => Query>): Query => {
     const initialQuery: Query = { params: [] };
 
     return fns.reduce((val, fn) => fn(val), initialQuery);
 };
-const buildQuery = (query: Query): Result<{ text: string; values: unknown[] }> => {
+export const buildQuery = (query: Query): Result<{ text: string; values: unknown[] }> => {
     if (query.select) {
         let sql = `SELECT ${query.select.join(", ")} FROM ${query.from}`;
         if (query.where) sql += ` WHERE ${query.where}`;
