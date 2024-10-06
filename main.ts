@@ -1,5 +1,5 @@
 import { Client, Pool } from "pg";
-import { composeQuery, executeQuery } from "./builder/perform";
+import { composeQuery, executeQuery } from "./builder/execute";
 import { from, limit, select, where } from "./builder/query";
 // just testing
 const client = new Pool({
