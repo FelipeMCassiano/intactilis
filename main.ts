@@ -2,7 +2,7 @@ import { Client, Pool } from "pg";
 import { composeQuery, executeQuery } from "./builder/perform";
 import { from, limit, select, where } from "./builder/query";
 import { connect } from "bun";
-
+// just testing
 const client = new Pool({
     user: "rinha",
     host: "localhost",
