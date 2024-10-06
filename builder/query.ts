@@ -1,5 +1,3 @@
-import type { Record } from "@prisma/client/runtime/library";
-
 export type Query = {
     select?: string[];
     from?: string;

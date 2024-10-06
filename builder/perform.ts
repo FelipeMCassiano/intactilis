@@ -9,6 +9,9 @@ export const composeQuery = (...fns: Array<(val: Query) => Query>): Query => {
 };
 export const buildQuery = (query: Query): Result<{ text: string; values: unknown[] }> => {
     if (query.select) {
+        if (query.from === undefined) {
+            return err("select needs a 'FROM' clause");
+        }
         let sql = `SELECT ${query.select.join(", ")} FROM ${query.from}`;
         if (query.where) sql += ` WHERE ${query.where}`;
         if (query.limit) sql += ` LIMIT ${query.limit}`;

@@ -1,7 +1,6 @@
 import { Client, Pool } from "pg";
 import { composeQuery, executeQuery } from "./builder/perform";
 import { from, limit, select, where } from "./builder/query";
-import { connect } from "bun";
 // just testing
 const client = new Pool({
     user: "rinha",
@@ -12,7 +11,7 @@ const client = new Pool({
 });
 
 const main = async () => {
-    const q = composeQuery(select(["saldo", "nome", "limite"]), from("clientes"), limit(10));
+    const q = composeQuery(select(["saldo", "nome", "limite"]), limit(10));
 
     const res = await executeQuery(client, q);
 
